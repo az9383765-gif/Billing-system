@@ -1,0 +1,46 @@
+{
+  "name": "martbill-billing-system",
+  "version": "1.0.0",
+  "description": "MartBill — smart offline-first billing & POS system for shops and markets with online sync",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently -n server,client \"node --watch server/index.js\" \"vite\"",
+    "build": "vite build",
+    "start": "node server/index.js",
+    "seed": "node server/seed.js",
+    "test": "node --test tests/api.test.js tests/register.test.js",
+    "test:ui": "node tests/e2e-ui.mjs",
+    "test:features": "node tests/e2e-features.mjs",
+    "shots:features": "node tools/feature-shots.mjs",
+    "shots:login": "node tools/setup-shots.mjs",
+    "deliver": "node tools/package.mjs",
+    "deliver:offline": "node tools/package.mjs --offline"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.2.0",
+    "@radix-ui/react-switch": "^1.3.8",
+    "@supabase/supabase-js": "^2.117.3",
+    "better-sqlite3": "^12.4.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dexie": "^4.4.6",
+    "express": "^4.21.2",
+    "framer-motion": "^14.1.0",
+    "google-auth-library": "^11.2.0",
+    "jsbarcode": "^3.11.6",
+    "lucide-react": "^1.55.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.6.1",
+    "concurrently": "^9.1.2",
+    "postcss": "^8.5.29",
+    "puppeteer-core": "^25.12.0",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.11"
+  }
+}

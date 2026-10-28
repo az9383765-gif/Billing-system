@@ -1,0 +1,25 @@
+# MartBill — Render blueprint.
+# In Render: New → Blueprint → select this repo. This file is the whole server:
+# build the app, start it, keep the SQLite database on a persistent disk.
+#
+# Render injects the right PORT automatically — server/index.js reads it.
+services:
+  - type: web
+    name: martbill
+    runtime: node
+    plan: starter # $7/mo — includes the persistent disk; free plan has no disk (see DEPLOY.md)
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: martbill-data
+      mountPath: /var/data # SQLite lives here — survives redeploys
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: SESSION_SECRET
+        generateValue: true
